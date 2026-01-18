@@ -2,16 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Laravel\Fortify\Features;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canRegister' => Features::enabled(Features::registration()),
-    ]);
-})->name('home');
+// LeesSpurt Reading Trainer routes
+Route::get('/', fn () => Inertia::render('Welcome'))->name('home');
+Route::get('/kid-settings', fn () => Inertia::render('KidSettings'))->name('kid.settings');
+Route::get('/play/setup', fn () => Inertia::render('LeesSpurt/Setup'))->name('game.setup');
+Route::get('/play/game', fn () => Inertia::render('LeesSpurt/Game'))->name('game.play');
+Route::get('/play/results', fn () => Inertia::render('LeesSpurt/Results'))->name('game.results');
 
-Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Dashboard (for existing components)
+Route::get('/dashboard', fn () => Inertia::render('Dashboard'))
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
+// Keep settings routes for existing pages
 require __DIR__.'/settings.php';
