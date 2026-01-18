@@ -20,6 +20,8 @@ class WordSeeder extends Seeder
 
     public function run(): void
     {
+        DB::table('words')->truncate();
+
         $files = glob(database_path('files/words.*.csv'));
 
         foreach ($files as $filePath) {
@@ -65,13 +67,13 @@ class WordSeeder extends Seeder
             ];
 
             if (count($batch) >= $batchSize) {
-                DB::table('words')->insertOrIgnore($batch);
+                DB::table('words')->insert($batch);
                 $batch = [];
             }
         }
 
         if (! empty($batch)) {
-            DB::table('words')->insertOrIgnore($batch);
+            DB::table('words')->insert($batch);
         }
 
         fclose($handle);
