@@ -6,6 +6,7 @@ const STORAGE_KEYS = {
     duration: 'leesSpurt.duration',
     threshold: 'leesSpurt.threshold',
     history: 'leesSpurt.history',
+    lastResult: 'leesSpurt.lastResult',
 };
 
 export interface GameResult {
@@ -22,14 +23,15 @@ const threshold = ref(parseInt(localStorage.getItem(STORAGE_KEYS.threshold) || '
 watch(duration, (val) => localStorage.setItem(STORAGE_KEYS.duration, String(val)));
 watch(threshold, (val) => localStorage.setItem(STORAGE_KEYS.threshold, String(val)));
 
-export function useGameState() {
-    const phase = ref<GamePhase>('countdown');
-    const score = ref(0);
-    const timeRemaining = ref(0);
-    const currentWord = ref('');
-    const countdownValue = ref(3);
+// Module-level state to prevent duplicate timers
+const phase = ref<GamePhase>('countdown');
+const score = ref(0);
+const timeRemaining = ref(0);
+const currentWord = ref('');
+const countdownValue = ref(3);
+let timerInterval: ReturnType<typeof setInterval> | null = null;
 
-    let timerInterval: ReturnType<typeof setInterval> | null = null;
+export function useGameState() {
 
     const setDuration = (d: number) => {
         duration.value = d;
@@ -53,6 +55,12 @@ export function useGameState() {
     };
 
     const startGame = (onTick: () => void, onFinish: () => void) => {
+        // Clear any existing timer first
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+
         phase.value = 'playing';
         score.value = 0;
         timeRemaining.value = duration.value;
@@ -79,6 +87,13 @@ export function useGameState() {
         phase.value = 'finished';
     };
 
+    const cleanup = () => {
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+    };
+
     const reset = () => {
         phase.value = 'countdown';
         score.value = 0;
@@ -96,12 +111,24 @@ export function useGameState() {
             passed: score.value >= threshold.value,
         };
 
+        // Save as last result for the results page
+        localStorage.setItem(STORAGE_KEYS.lastResult, JSON.stringify(result));
+
         const history = getHistory();
         history.unshift(result);
         const trimmed = history.slice(0, 10);
         localStorage.setItem(STORAGE_KEYS.history, JSON.stringify(trimmed));
 
         return result;
+    };
+
+    const getLastResult = (): GameResult | null => {
+        try {
+            const stored = localStorage.getItem(STORAGE_KEYS.lastResult);
+            return stored ? JSON.parse(stored) : null;
+        } catch {
+            return null;
+        }
     };
 
     const getHistory = (): GameResult[] => {
@@ -133,8 +160,10 @@ export function useGameState() {
         startGame,
         incrementScore,
         endGame,
+        cleanup,
         reset,
         saveResult,
+        getLastResult,
         getHistory,
     };
 }

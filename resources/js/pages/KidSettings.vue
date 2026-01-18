@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Head, router } from '@inertiajs/vue3';
+import { onMounted } from 'vue';
 
 import LetterSelector from '@/components/game/LetterSelector.vue';
 import { Button } from '@/components/ui/button';
@@ -9,12 +10,16 @@ import { useKidSettings } from '@/composables/useKidSettings';
 import { useLanguage } from '@/composables/useLanguage';
 import KidLayout from '@/layouts/KidLayout.vue';
 
-const { t } = useLanguage();
+const props = defineProps<{ lang?: string }>();
+
+const { t, route, initFromProp } = useLanguage();
 const { kidName, minWordLength, maxWordLength, knownLetters, setName, toggleLetter, applyPreset } =
     useKidSettings();
 
+onMounted(() => initFromProp(props.lang));
+
 const handleContinue = () => {
-    router.visit('/play/setup');
+    router.visit(route('/play/setup'));
 };
 </script>
 

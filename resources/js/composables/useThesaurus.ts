@@ -16,7 +16,7 @@ export function useThesaurus() {
 
         try {
             loading.value = true;
-            const response = await fetch(`/data/thesaurus/${language}/words-${length}.json`);
+            const response = await fetch(`/api/words/${language}/${length}`);
             if (!response.ok) {
                 throw new Error(`Failed to load words for ${language} length ${length}`);
             }

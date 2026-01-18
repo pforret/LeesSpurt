@@ -1,4 +1,4 @@
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 
 export type Language = 'en' | 'nl';
 
@@ -15,13 +15,26 @@ export function useLanguage() {
         language.value = lang;
     };
 
+    const initFromProp = (lang?: string) => {
+        if (lang === 'en' || lang === 'nl') {
+            language.value = lang;
+        }
+    };
+
     const t = (translations: Record<Language, string>) => {
         return translations[language.value];
     };
 
+    const langPath = computed(() => `/${language.value}`);
+
+    const route = (path: string) => `/${language.value}${path}`;
+
     return {
         language,
         setLanguage,
+        initFromProp,
         t,
+        langPath,
+        route,
     };
 }

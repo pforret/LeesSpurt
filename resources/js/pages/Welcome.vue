@@ -9,7 +9,7 @@ const { language, setLanguage, t } = useLanguage();
 
 const selectLanguage = (lang: Language) => {
     setLanguage(lang);
-    router.visit('/kid-settings');
+    router.visit(`/${lang}/settings`);
 };
 </script>
 

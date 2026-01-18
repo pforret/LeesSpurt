@@ -1,21 +1,34 @@
 <script setup lang="ts">
 import { Head, router } from '@inertiajs/vue3';
-import { computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 import { Button } from '@/components/ui/button';
-import { useGameState } from '@/composables/useGameState';
+import { useGameState, type GameResult } from '@/composables/useGameState';
 import { useKidSettings } from '@/composables/useKidSettings';
 import { useLanguage } from '@/composables/useLanguage';
 import KidLayout from '@/layouts/KidLayout.vue';
 
-const { t } = useLanguage();
-const { kidName } = useKidSettings();
-const { score, threshold, duration, passed, getHistory } = useGameState();
+const props = defineProps<{ lang?: string }>();
 
+const { t, route, initFromProp } = useLanguage();
+const { kidName } = useKidSettings();
+const { getLastResult, getHistory } = useGameState();
+
+const lastResult = ref<GameResult | null>(null);
+
+onMounted(() => {
+    initFromProp(props.lang);
+    lastResult.value = getLastResult();
+});
+
+const score = computed(() => lastResult.value?.score ?? 0);
+const threshold = computed(() => lastResult.value?.threshold ?? 10);
+const duration = computed(() => lastResult.value?.duration ?? 30);
+const passed = computed(() => lastResult.value?.passed ?? false);
 const history = computed(() => getHistory());
 
 const playAgain = () => {
-    router.visit('/play/setup');
+    router.visit(route('/play/setup'));
 };
 
 const goHome = () => {

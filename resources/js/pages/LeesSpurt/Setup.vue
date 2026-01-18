@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Head, router } from '@inertiajs/vue3';
+import { onMounted } from 'vue';
 
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -8,15 +9,19 @@ import { useKidSettings } from '@/composables/useKidSettings';
 import { useLanguage } from '@/composables/useLanguage';
 import KidLayout from '@/layouts/KidLayout.vue';
 
-const { t } = useLanguage();
+const props = defineProps<{ lang?: string }>();
+
+const { t, route, initFromProp } = useLanguage();
 const { kidName } = useKidSettings();
 const { duration, threshold, setDuration, setThreshold } = useGameState();
 
-const durations = [15, 30, 60];
-const thresholds = [5, 10, 15, 20];
+onMounted(() => initFromProp(props.lang));
+
+const durations = [30, 60, 120, 180];
+const thresholds = [10, 25, 50, 100];
 
 const startGame = () => {
-    router.visit('/play/game');
+    router.visit(route('/play/game'));
 };
 </script>
 
@@ -38,12 +43,12 @@ const startGame = () => {
                 <Label class="text-lg text-sky-800 dark:text-sky-200">
                     {{ t({ en: 'Time (seconds)', nl: 'Tijd (seconden)' }) }}
                 </Label>
-                <div class="flex justify-center gap-4">
+                <div class="flex flex-wrap justify-center gap-3">
                     <button
                         v-for="d in durations"
                         :key="d"
                         type="button"
-                        class="flex h-16 w-20 items-center justify-center rounded-xl text-2xl font-bold transition-all"
+                        class="flex h-14 w-16 items-center justify-center rounded-xl text-xl font-bold transition-all"
                         :class="
                             duration === d
                                 ? 'bg-sky-500 text-white shadow-lg'
@@ -53,6 +58,14 @@ const startGame = () => {
                     >
                         {{ d }}
                     </button>
+                    <input
+                        type="number"
+                        :value="duration"
+                        min="10"
+                        max="600"
+                        class="h-14 w-20 rounded-xl border-2 border-sky-300 bg-white text-center text-xl font-bold text-sky-800 focus:border-sky-500 focus:outline-none dark:border-sky-700 dark:bg-sky-900 dark:text-sky-200"
+                        @input="setDuration(Number(($event.target as HTMLInputElement).value))"
+                    />
                 </div>
             </div>
 
@@ -60,12 +73,12 @@ const startGame = () => {
                 <Label class="text-lg text-sky-800 dark:text-sky-200">
                     {{ t({ en: 'Goal (words)', nl: 'Doel (woorden)' }) }}
                 </Label>
-                <div class="flex justify-center gap-4">
+                <div class="flex flex-wrap justify-center gap-3">
                     <button
                         v-for="th in thresholds"
                         :key="th"
                         type="button"
-                        class="flex h-16 w-16 items-center justify-center rounded-xl text-2xl font-bold transition-all"
+                        class="flex h-14 w-16 items-center justify-center rounded-xl text-xl font-bold transition-all"
                         :class="
                             threshold === th
                                 ? 'bg-green-500 text-white shadow-lg'
@@ -75,6 +88,14 @@ const startGame = () => {
                     >
                         {{ th }}
                     </button>
+                    <input
+                        type="number"
+                        :value="threshold"
+                        min="1"
+                        max="500"
+                        class="h-14 w-20 rounded-xl border-2 border-green-300 bg-white text-center text-xl font-bold text-sky-800 focus:border-green-500 focus:outline-none dark:border-green-700 dark:bg-sky-900 dark:text-sky-200"
+                        @input="setThreshold(Number(($event.target as HTMLInputElement).value))"
+                    />
                 </div>
             </div>
 

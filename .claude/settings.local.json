@@ -4,7 +4,12 @@
       "Bash(grep:*)",
       "Bash(npm run lint:*)",
       "Bash(composer lint:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(awk:*)",
+      "Bash(php artisan tinker:*)",
+      "Bash(php artisan:*)",
+      "Bash(curl:*)",
+      "Bash(composer test:*)"
     ]
   }
 }

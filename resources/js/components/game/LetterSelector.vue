@@ -57,7 +57,7 @@ const isSelected = (letter: string) => props.knownLetters.includes(letter.toLowe
                 v-for="letter in alphabet"
                 :key="letter"
                 type="button"
-                class="flex h-10 w-10 items-center justify-center rounded-lg text-lg font-bold uppercase transition-all sm:h-12 sm:w-12"
+                class="flex h-10 w-10 items-center justify-center rounded-lg text-lg font-bold transition-all sm:h-12 sm:w-12"
                 :class="
                     isSelected(letter)
                         ? 'bg-sky-500 text-white shadow-md'

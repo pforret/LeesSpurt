@@ -11,7 +11,9 @@ import { useLanguage } from '@/composables/useLanguage';
 import { useThesaurus } from '@/composables/useThesaurus';
 import KidLayout from '@/layouts/KidLayout.vue';
 
-const { language, t } = useLanguage();
+const props = defineProps<{ lang?: string }>();
+
+const { language, t, route, initFromProp } = useLanguage();
 const { minWordLength, maxWordLength, knownLetters } = useKidSettings();
 const { loadWordsInRange, filterByLetters, selectRandomWord } = useThesaurus();
 const {
@@ -26,6 +28,7 @@ const {
     incrementScore,
     saveResult,
     reset,
+    cleanup,
 } = useGameState();
 
 const availableWords = ref<string[]>([]);
@@ -54,10 +57,11 @@ const handleKeydown = (e: KeyboardEvent) => {
 
 const finishGame = () => {
     saveResult();
-    router.visit('/play/results');
+    router.visit(route('/play/results'));
 };
 
 onMounted(async () => {
+    initFromProp(props.lang);
     reset();
     loading.value = true;
 
@@ -65,7 +69,7 @@ onMounted(async () => {
     availableWords.value = filterByLetters(words, knownLetters.value);
 
     if (availableWords.value.length === 0) {
-        availableWords.value = ['no', 'words'];
+        availableWords.value = ['no', 'more'];
     }
 
     loading.value = false;
@@ -82,6 +86,7 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
+    cleanup();
     window.removeEventListener('keydown', handleKeydown);
 });
 </script>
