@@ -26,7 +26,7 @@ const startGame = () => {
 </script>
 
 <template>
-    <Head :title="t({ en: 'Game Setup', nl: 'Spel instellen' })" />
+    <Head :title="t({ en: 'Game Setup', nl: 'Spel instellen', fr: 'Configuration du jeu' })" />
 
     <KidLayout>
         <div class="w-full max-w-lg space-y-8">
@@ -35,13 +35,14 @@ const startGame = () => {
                     t({
                         en: `Ready, ${kidName || 'friend'}?`,
                         nl: `Klaar, ${kidName || 'vriend'}?`,
+                        fr: `Prêt, ${kidName || 'ami'}?`,
                     })
                 }}
             </h1>
 
             <div class="space-y-4">
                 <Label class="text-lg text-sky-800 dark:text-sky-200">
-                    {{ t({ en: 'Time (seconds)', nl: 'Tijd (seconden)' }) }}
+                    {{ t({ en: 'Time (seconds)', nl: 'Tijd (seconden)', fr: 'Temps (secondes)' }) }}
                 </Label>
                 <div class="flex flex-wrap justify-center gap-3">
                     <button
@@ -71,7 +72,7 @@ const startGame = () => {
 
             <div class="space-y-4">
                 <Label class="text-lg text-sky-800 dark:text-sky-200">
-                    {{ t({ en: 'Goal (words)', nl: 'Doel (woorden)' }) }}
+                    {{ t({ en: 'Goal (words)', nl: 'Doel (woorden)', fr: 'Objectif (mots)' }) }}
                 </Label>
                 <div class="flex flex-wrap justify-center gap-3">
                     <button
@@ -105,7 +106,7 @@ const startGame = () => {
                     class="h-16 px-16 text-2xl font-bold"
                     @click="startGame"
                 >
-                    {{ t({ en: 'START!', nl: 'START!' }) }}
+                    {{ t({ en: 'START!', nl: 'START!', fr: 'COMMENCER!' }) }}
                 </Button>
             </div>
         </div>

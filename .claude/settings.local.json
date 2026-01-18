@@ -9,7 +9,8 @@
       "Bash(php artisan tinker:*)",
       "Bash(php artisan:*)",
       "Bash(curl:*)",
-      "Bash(composer test:*)"
+      "Bash(composer test:*)",
+      "Bash(npm install)"
     ]
   }
 }

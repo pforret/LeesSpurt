@@ -12,6 +12,7 @@ class LanguageSeeder extends Seeder
         $languages = [
             ['code' => 'en', 'name' => 'English'],
             ['code' => 'nl', 'name' => 'Dutch'],
+            ['code' => 'fr', 'name' => 'French'],
         ];
 
         foreach ($languages as $lang) {

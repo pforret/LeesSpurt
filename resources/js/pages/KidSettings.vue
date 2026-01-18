@@ -24,12 +24,12 @@ const handleContinue = () => {
 </script>
 
 <template>
-    <Head :title="t({ en: 'Settings', nl: 'Instellingen' })" />
+    <Head :title="t({ en: 'Settings', nl: 'Instellingen', fr: 'Paramètres' })" />
 
     <KidLayout>
         <div class="w-full max-w-2xl space-y-8">
             <h1 class="text-center text-3xl font-bold text-sky-800 sm:text-4xl dark:text-sky-100">
-                {{ t({ en: "What's your name?", nl: 'Hoe heet je?' }) }}
+                {{ t({ en: "What's your name?", nl: 'Hoe heet je?', fr: 'Comment tu t\'appelles?' }) }}
             </h1>
 
             <div class="space-y-2">
@@ -37,7 +37,7 @@ const handleContinue = () => {
                     id="name"
                     v-model="kidName"
                     type="text"
-                    :placeholder="t({ en: 'Your name', nl: 'Je naam' })"
+                    :placeholder="t({ en: 'Your name', nl: 'Je naam', fr: 'Ton nom' })"
                     class="h-14 text-center text-2xl"
                     @input="setName(($event.target as HTMLInputElement).value)"
                 />
@@ -45,7 +45,7 @@ const handleContinue = () => {
 
             <div class="space-y-4">
                 <Label class="text-lg text-sky-800 dark:text-sky-200">
-                    {{ t({ en: 'Word length', nl: 'Woordlengte' }) }}
+                    {{ t({ en: 'Word length', nl: 'Woordlengte', fr: 'Longueur des mots' }) }}
                 </Label>
                 <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
                     <button
@@ -78,6 +78,7 @@ const handleContinue = () => {
                         t({
                             en: `Words with ${minWordLength}-${maxWordLength} letters`,
                             nl: `Woorden met ${minWordLength}-${maxWordLength} letters`,
+                            fr: `Mots de ${minWordLength}-${maxWordLength} lettres`,
                         })
                     }}
                 </p>
@@ -85,7 +86,7 @@ const handleContinue = () => {
 
             <div class="space-y-4">
                 <Label class="text-lg text-sky-800 dark:text-sky-200">
-                    {{ t({ en: 'Letters you know', nl: 'Letters die je kent' }) }}
+                    {{ t({ en: 'Letters you know', nl: 'Letters die je kent', fr: 'Lettres que tu connais' }) }}
                 </Label>
                 <LetterSelector
                     :known-letters="knownLetters"
@@ -101,7 +102,7 @@ const handleContinue = () => {
                     :disabled="!kidName || knownLetters.length < 3"
                     @click="handleContinue"
                 >
-                    {{ t({ en: 'Continue', nl: 'Doorgaan' }) }}
+                    {{ t({ en: 'Continue', nl: 'Doorgaan', fr: 'Continuer' }) }}
                 </Button>
             </div>
         </div>

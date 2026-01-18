@@ -92,7 +92,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <Head :title="t({ en: 'Play!', nl: 'Speel!' })" />
+    <Head :title="t({ en: 'Play!', nl: 'Speel!', fr: 'Jouer!' })" />
 
     <CountdownOverlay v-if="phase === 'countdown'" :value="countdownValue" />
 
@@ -106,19 +106,19 @@ onUnmounted(() => {
 
             <div class="text-center">
                 <span class="text-2xl font-bold text-sky-700 dark:text-sky-300">
-                    {{ t({ en: 'Score', nl: 'Score' }) }}: {{ score }}
+                    {{ t({ en: 'Score', nl: 'Score', fr: 'Score' }) }}: {{ score }}
                 </span>
             </div>
 
             <WordDisplay :word="currentWord" />
 
             <p class="text-lg text-sky-600 dark:text-sky-400">
-                {{ t({ en: 'Press SPACE or tap to continue', nl: 'Druk op SPATIE of tik om door te gaan' }) }}
+                {{ t({ en: 'Press SPACE or tap to continue', nl: 'Druk op SPATIE of tik om door te gaan', fr: 'Appuie sur ESPACE ou tape pour continuer' }) }}
             </p>
         </div>
 
         <div v-else-if="loading" class="text-2xl text-sky-700 dark:text-sky-300">
-            {{ t({ en: 'Loading...', nl: 'Laden...' }) }}
+            {{ t({ en: 'Loading...', nl: 'Laden...', fr: 'Chargement...' }) }}
         </div>
     </KidLayout>
 </template>

@@ -21,15 +21,15 @@ const presets = computed(() => {
     const lang = language.value;
     return [
         {
-            label: t({ en: 'Vowels', nl: 'Klinkers' }),
+            label: t({ en: 'Vowels', nl: 'Klinkers', fr: 'Voyelles' }),
             letters: LETTER_PRESETS[lang].vowels,
         },
         {
-            label: t({ en: 'Beginners', nl: 'Beginners' }),
+            label: t({ en: 'Beginners', nl: 'Beginners', fr: 'Débutants' }),
             letters: LETTER_PRESETS[lang].beginners,
         },
         {
-            label: t({ en: 'Intermediate', nl: 'Gevorderd' }),
+            label: t({ en: 'Intermediate', nl: 'Gevorderd', fr: 'Intermédiaire' }),
             letters: LETTER_PRESETS[lang].intermediate,
         },
     ];

@@ -11,7 +11,7 @@ Route::get('/api/words/{lang}/{length}', [WordController::class, 'index']);
 Route::get('/', fn () => Inertia::render('Welcome'))->name('home');
 
 // Language-prefixed routes
-foreach (['en', 'nl'] as $lang) {
+foreach (['en', 'nl', 'fr'] as $lang) {
     Route::prefix($lang)->group(function () use ($lang) {
         Route::get('/settings', fn () => Inertia::render('KidSettings', ['lang' => $lang]))->name("$lang.kid.settings");
         Route::get('/play/setup', fn () => Inertia::render('LeesSpurt/Setup', ['lang' => $lang]))->name("$lang.game.setup");

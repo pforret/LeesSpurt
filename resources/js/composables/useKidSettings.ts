@@ -28,6 +28,11 @@ export const LETTER_PRESETS = {
         beginners: 'aeiourtnspl',
         intermediate: 'aeiourtnspdlfghkm',
     },
+    fr: {
+        vowels: 'aeiouy',
+        beginners: 'aeiouylrsntp',
+        intermediate: 'aeiouylrsntpdmcbf',
+    },
 };
 
 export function useKidSettings() {

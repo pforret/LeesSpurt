@@ -37,7 +37,7 @@ const goHome = () => {
 </script>
 
 <template>
-    <Head :title="t({ en: 'Results', nl: 'Resultaten' })" />
+    <Head :title="t({ en: 'Results', nl: 'Resultaten', fr: 'Résultats' })" />
 
     <KidLayout>
         <div class="w-full max-w-lg space-y-8 text-center">
@@ -48,6 +48,7 @@ const goHome = () => {
                         t({
                             en: `Great job, ${kidName || 'friend'}!`,
                             nl: `Geweldig, ${kidName || 'vriend'}!`,
+                            fr: `Bravo, ${kidName || 'ami'}!`,
                         })
                     }}
                 </h1>
@@ -59,6 +60,7 @@ const goHome = () => {
                         t({
                             en: `Good try, ${kidName || 'friend'}!`,
                             nl: `Goed geprobeerd, ${kidName || 'vriend'}!`,
+                            fr: `Bien essayé, ${kidName || 'ami'}!`,
                         })
                     }}
                 </h1>
@@ -70,7 +72,7 @@ const goHome = () => {
                 <div class="space-y-4">
                     <div>
                         <p class="text-lg text-sky-600 dark:text-sky-400">
-                            {{ t({ en: 'Your score', nl: 'Je score' }) }}
+                            {{ t({ en: 'Your score', nl: 'Je score', fr: 'Ton score' }) }}
                         </p>
                         <p class="text-6xl font-bold text-sky-800 dark:text-sky-100">
                             {{ score }}
@@ -78,7 +80,7 @@ const goHome = () => {
                     </div>
                     <div class="flex items-center justify-center gap-2">
                         <span class="text-sky-600 dark:text-sky-400">
-                            {{ t({ en: 'Goal', nl: 'Doel' }) }}:
+                            {{ t({ en: 'Goal', nl: 'Doel', fr: 'Objectif' }) }}:
                         </span>
                         <span
                             class="font-bold"
@@ -87,7 +89,7 @@ const goHome = () => {
                             {{ threshold }}
                         </span>
                         <span class="text-sky-600 dark:text-sky-400">
-                            {{ t({ en: 'in', nl: 'in' }) }} {{ duration }}s
+                            {{ t({ en: 'in', nl: 'in', fr: 'en' }) }} {{ duration }}s
                         </span>
                     </div>
                 </div>
@@ -95,7 +97,7 @@ const goHome = () => {
 
             <div v-if="history.length > 1" class="space-y-2">
                 <h2 class="text-lg font-medium text-sky-700 dark:text-sky-300">
-                    {{ t({ en: 'Recent games', nl: 'Recente spellen' }) }}
+                    {{ t({ en: 'Recent games', nl: 'Recente spellen', fr: 'Parties récentes' }) }}
                 </h2>
                 <div class="flex flex-wrap justify-center gap-2">
                     <span
@@ -119,7 +121,7 @@ const goHome = () => {
                     class="h-14 px-8 text-xl"
                     @click="playAgain"
                 >
-                    {{ t({ en: 'Play again', nl: 'Opnieuw spelen' }) }}
+                    {{ t({ en: 'Play again', nl: 'Opnieuw spelen', fr: 'Rejouer' }) }}
                 </Button>
                 <Button
                     size="lg"
@@ -127,7 +129,7 @@ const goHome = () => {
                     class="h-14 px-8 text-xl"
                     @click="goHome"
                 >
-                    {{ t({ en: 'Home', nl: 'Home' }) }}
+                    {{ t({ en: 'Home', nl: 'Home', fr: 'Accueil' }) }}
                 </Button>
             </div>
         </div>

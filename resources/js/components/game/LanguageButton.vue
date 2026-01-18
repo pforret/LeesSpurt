@@ -13,11 +13,13 @@ defineEmits<{
 const flags: Record<Language, string> = {
     en: '🇬🇧',
     nl: '🇳🇱',
+    fr: '🇫🇷',
 };
 
 const labels: Record<Language, string> = {
     en: 'English',
     nl: 'Nederlands',
+    fr: 'Français',
 };
 </script>
 

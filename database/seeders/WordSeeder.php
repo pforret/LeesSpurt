@@ -8,27 +8,36 @@ use Illuminate\Support\Facades\DB;
 
 class WordSeeder extends Seeder
 {
+    private const LANGUAGE_NAMES = [
+        'en' => 'English',
+        'nl' => 'Dutch',
+        'fr' => 'French',
+        'de' => 'German',
+        'es' => 'Spanish',
+        'it' => 'Italian',
+        'pt' => 'Portuguese',
+    ];
+
     public function run(): void
     {
-        $this->call(LanguageSeeder::class);
+        $files = glob(database_path('files/words.*.csv'));
 
-        $languages = Language::all()->keyBy('code');
-
-        foreach (['nl', 'en'] as $langCode) {
-            $filePath = database_path("files/words.{$langCode}.csv");
-
-            if (! file_exists($filePath)) {
-                $this->command->warn("File not found: {$filePath}");
-
+        foreach ($files as $filePath) {
+            // Extract language code from filename (words.XX.csv)
+            if (! preg_match('/words\.([a-z]{2})\.csv$/', $filePath, $matches)) {
                 continue;
             }
 
-            $language = $languages->get($langCode);
-            if (! $language) {
-                continue;
-            }
+            $langCode = $matches[1];
+            $langName = self::LANGUAGE_NAMES[$langCode] ?? ucfirst($langCode);
+
+            $language = Language::firstOrCreate(
+                ['code' => $langCode],
+                ['name' => $langName]
+            );
 
             $this->seedFromCsv($filePath, $language->id);
+            $this->command->info("Seeded words for {$langName}");
         }
     }
 

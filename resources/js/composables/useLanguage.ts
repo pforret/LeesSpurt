@@ -1,6 +1,6 @@
 import { ref, watch, computed } from 'vue';
 
-export type Language = 'en' | 'nl';
+export type Language = 'en' | 'nl' | 'fr';
 
 const STORAGE_KEY = 'leesSpurt.language';
 
@@ -16,7 +16,7 @@ export function useLanguage() {
     };
 
     const initFromProp = (lang?: string) => {
-        if (lang === 'en' || lang === 'nl') {
+        if (lang === 'en' || lang === 'nl' || lang === 'fr') {
             language.value = lang;
         }
     };
