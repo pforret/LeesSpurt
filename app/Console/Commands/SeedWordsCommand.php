@@ -21,6 +21,6 @@ class SeedWordsCommand extends Command
 
         $this->info('Done!');
 
-        return Command::SUCCESS;
+        return self::SUCCESS;
     }
 }
