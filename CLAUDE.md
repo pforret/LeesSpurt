@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-LeesTrainer is a reading skills trainer for 5-year-olds built with Laravel 12 + Vue 3 + Inertia.js. Features language selection (English/Dutch) with browser persistence and word thesaurus files split by word length.
+Letterly is a reading skills trainer for 5-year-olds built with Laravel 12 + Vue 3 + Inertia.js. Features language selection (English/Dutch/French) with browser persistence and word thesaurus files split by word length.
 
 ## URLs
 
-* dev: http://leestrainer.test/ (via Laravel Valet)
+* dev: http://letterly.test/ (via Laravel Valet)
 * prod: 
 
 ## Commands

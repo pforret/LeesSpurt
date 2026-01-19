@@ -1,2 +1,2 @@
-# Welcome to LeesSpurt Docs
+# Welcome to Letterly Docs
 

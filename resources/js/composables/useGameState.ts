@@ -3,10 +3,10 @@ import { ref, computed, watch } from 'vue';
 export type GamePhase = 'countdown' | 'playing' | 'finished';
 
 const STORAGE_KEYS = {
-    duration: 'leesSpurt.duration',
-    threshold: 'leesSpurt.threshold',
-    history: 'leesSpurt.history',
-    lastResult: 'leesSpurt.lastResult',
+    duration: 'letterly.duration',
+    threshold: 'letterly.threshold',
+    history: 'letterly.history',
+    lastResult: 'letterly.lastResult',
 };
 
 export interface GameResult {

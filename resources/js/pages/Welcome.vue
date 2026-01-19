@@ -18,11 +18,16 @@ const selectLanguage = (lang: Language) => {
 
     <KidLayout>
         <div class="w-full max-w-lg space-y-8 text-center">
-            <h1 class="text-4xl font-bold text-sky-800 sm:text-5xl dark:text-sky-100">
-                {{ t({ en: 'Welcome to LeesSpurt!', nl: 'Welkom bij LeesSpurt!', fr: 'Bienvenue à LeesSpurt!' }) }}
-            </h1>
+            <div class="space-y-2">
+                <div class="text-5xl sm:text-6xl">🎉</div>
+                <h1 class="font-game text-4xl font-bold sm:text-5xl">
+                    <span class="bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent">
+                        {{ t({ en: 'Welcome to Letterly!', nl: 'Welkom bij Letterly!', fr: 'Bienvenue à Letterly!' }) }}
+                    </span>
+                </h1>
+            </div>
 
-            <p class="text-xl text-sky-700 dark:text-sky-300">
+            <p class="text-xl font-medium text-sky-600 dark:text-sky-300">
                 {{ t({ en: 'Choose your language', nl: 'Kies je taal', fr: 'Choisis ta langue' }) }}
             </p>
 
@@ -43,6 +48,10 @@ const selectLanguage = (lang: Language) => {
                     @select="selectLanguage"
                 />
             </div>
+
+            <p class="text-lg text-sky-600 dark:text-sky-400">
+                {{ t({ en: "Let's learn to read!", nl: 'Leren lezen is leuk!', fr: 'Apprendre à lire, c\'est fun!' }) }} 📖✨
+            </p>
         </div>
     </KidLayout>
 </template>

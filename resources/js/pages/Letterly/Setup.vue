@@ -30,19 +30,22 @@ const startGame = () => {
 
     <KidLayout>
         <div class="w-full max-w-lg space-y-8">
-            <h1 class="text-center text-3xl font-bold text-sky-800 sm:text-4xl dark:text-sky-100">
-                {{
-                    t({
-                        en: `Ready, ${kidName || 'friend'}?`,
-                        nl: `Klaar, ${kidName || 'vriend'}?`,
-                        fr: `Prêt, ${kidName || 'ami'}?`,
-                    })
-                }}
+            <h1 class="text-center text-3xl font-bold sm:text-4xl">
+                <span class="bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent">
+                    {{
+                        t({
+                            en: `Ready, ${kidName || 'friend'}?`,
+                            nl: `Klaar, ${kidName || 'vriend'}?`,
+                            fr: `Prêt, ${kidName || 'ami'}?`,
+                        })
+                    }}
+                </span>
+                <span class="ml-2">🎮</span>
             </h1>
 
             <div class="space-y-3">
-                <Label class="text-lg text-sky-800 dark:text-sky-200">
-                    {{ t({ en: 'Time (seconds)', nl: 'Tijd (seconden)', fr: 'Temps (secondes)' }) }}
+                <Label class="text-lg font-bold text-sky-700 dark:text-sky-300">
+                    {{ t({ en: 'Time (seconds)', nl: 'Tijd (seconden)', fr: 'Temps (secondes)' }) }} ⏱️
                 </Label>
                 <div class="flex justify-center">
                     <input
@@ -50,7 +53,7 @@ const startGame = () => {
                         :value="duration"
                         min="10"
                         max="600"
-                        class="h-20 w-32 rounded-2xl border-4 border-sky-400 bg-white text-center text-4xl font-bold text-sky-800 shadow-lg focus:border-sky-500 focus:outline-none dark:border-sky-600 dark:bg-sky-900 dark:text-sky-200"
+                        class="h-20 w-32 rounded-2xl border-4 border-sky-400 bg-white/90 text-center text-4xl font-bold text-sky-700 shadow-lg focus:border-sky-500 focus:outline-none dark:border-sky-600 dark:bg-sky-900/50 dark:text-sky-200"
                         @input="setDuration(Number(($event.target as HTMLInputElement).value))"
                     />
                 </div>
@@ -59,11 +62,11 @@ const startGame = () => {
                         v-for="d in durations"
                         :key="d"
                         type="button"
-                        class="flex h-10 w-12 items-center justify-center rounded-lg text-sm font-semibold transition-all"
+                        class="flex h-10 w-14 items-center justify-center rounded-xl text-sm font-bold shadow-md transition-all duration-200 hover:scale-105"
                         :class="
                             duration === d
-                                ? 'bg-sky-500 text-white shadow'
-                                : 'bg-sky-100 text-sky-700 hover:bg-sky-200 dark:bg-sky-800 dark:text-sky-300'
+                                ? 'bg-gradient-to-br from-sky-400 to-blue-500 text-white shadow-lg'
+                                : 'bg-white/80 text-sky-700 hover:bg-sky-100 dark:bg-sky-900/50 dark:text-sky-200'
                         "
                         @click="setDuration(d)"
                     >
@@ -73,8 +76,8 @@ const startGame = () => {
             </div>
 
             <div class="space-y-3">
-                <Label class="text-lg text-sky-800 dark:text-sky-200">
-                    {{ t({ en: 'Goal (words)', nl: 'Doel (woorden)', fr: 'Objectif (mots)' }) }}
+                <Label class="text-lg font-bold text-sky-700 dark:text-sky-300">
+                    {{ t({ en: 'Goal (words)', nl: 'Doel (woorden)', fr: 'Objectif (mots)' }) }} 🎯
                 </Label>
                 <div class="flex justify-center">
                     <input
@@ -82,7 +85,7 @@ const startGame = () => {
                         :value="threshold"
                         min="1"
                         max="500"
-                        class="h-20 w-32 rounded-2xl border-4 border-green-400 bg-white text-center text-4xl font-bold text-sky-800 shadow-lg focus:border-green-500 focus:outline-none dark:border-green-600 dark:bg-sky-900 dark:text-sky-200"
+                        class="h-20 w-32 rounded-2xl border-4 border-green-400 bg-white/90 text-center text-4xl font-bold text-sky-700 shadow-lg focus:border-green-500 focus:outline-none dark:border-green-600 dark:bg-sky-900/50 dark:text-sky-200"
                         @input="setThreshold(Number(($event.target as HTMLInputElement).value))"
                     />
                 </div>
@@ -91,11 +94,11 @@ const startGame = () => {
                         v-for="th in thresholds"
                         :key="th"
                         type="button"
-                        class="flex h-10 w-12 items-center justify-center rounded-lg text-sm font-semibold transition-all"
+                        class="flex h-10 w-14 items-center justify-center rounded-xl text-sm font-bold shadow-md transition-all duration-200 hover:scale-105"
                         :class="
                             threshold === th
-                                ? 'bg-green-500 text-white shadow'
-                                : 'bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-800 dark:text-green-300'
+                                ? 'bg-gradient-to-br from-green-400 to-emerald-500 text-white shadow-lg'
+                                : 'bg-white/80 text-sky-700 hover:bg-green-100 dark:bg-sky-900/50 dark:text-sky-200'
                         "
                         @click="setThreshold(th)"
                     >
@@ -107,10 +110,10 @@ const startGame = () => {
             <div class="flex justify-center pt-8">
                 <Button
                     size="lg"
-                    class="h-16 px-16 text-2xl font-bold"
+                    class="h-16 rounded-2xl bg-gradient-to-r from-green-400 via-emerald-500 to-teal-500 px-16 text-2xl font-bold shadow-xl transition-all duration-200 hover:scale-105 hover:-translate-y-1 hover:shadow-2xl"
                     @click="startGame"
                 >
-                    {{ t({ en: 'START!', nl: 'START!', fr: 'COMMENCER!' }) }}
+                    {{ t({ en: 'START!', nl: 'START!', fr: 'COMMENCER!' }) }} 🚀
                 </Button>
             </div>
         </div>

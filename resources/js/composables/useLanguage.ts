@@ -2,7 +2,7 @@ import { ref, watch, computed } from 'vue';
 
 export type Language = 'en' | 'nl' | 'fr';
 
-const STORAGE_KEY = 'leesSpurt.language';
+const STORAGE_KEY = 'letterly.language';
 
 const language = ref<Language>((localStorage.getItem(STORAGE_KEY) as Language) || 'en');
 

@@ -1,11 +1,11 @@
 import { ref, watch } from 'vue';
 
 const KEYS = {
-    name: 'leesSpurt.kidName',
-    minLen: 'leesSpurt.minWordLength',
-    maxLen: 'leesSpurt.maxWordLength',
-    letters: 'leesSpurt.knownLetters',
-    age: 'leesSpurt.kidAge',
+    name: 'letterly.kidName',
+    minLen: 'letterly.minWordLength',
+    maxLen: 'letterly.maxWordLength',
+    letters: 'letterly.knownLetters',
+    age: 'letterly.kidAge',
 };
 
 const kidName = ref(localStorage.getItem(KEYS.name) || '');
@@ -28,8 +28,8 @@ export const LETTER_PRESETS = {
     },
     nl: {
         vowels: 'aeiou',
-        beginners: 'aeiourtnspl',
-        intermediate: 'aeiourtnspdlfghkm',
+        beginners: 'abdeghiklmnoprstuvw',
+        intermediate: 'abcdefghijklmnopqrstuvwxyz',
     },
     fr: {
         vowels: 'aeiouy',

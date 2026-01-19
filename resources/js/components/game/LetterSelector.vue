@@ -40,12 +40,12 @@ const isSelected = (letter: string) => props.knownLetters.includes(letter.toLowe
 
 <template>
     <div class="space-y-4">
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap justify-center gap-2">
             <button
                 v-for="preset in presets"
                 :key="preset.label"
                 type="button"
-                class="rounded-lg bg-sky-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-sky-600"
+                class="rounded-xl bg-gradient-to-r from-sky-500 to-blue-500 px-4 py-2 text-sm font-bold text-white shadow-md transition-all duration-200 hover:scale-105 hover:-translate-y-0.5 hover:shadow-lg"
                 @click="emit('preset', preset.letters)"
             >
                 {{ preset.label }}
@@ -57,11 +57,11 @@ const isSelected = (letter: string) => props.knownLetters.includes(letter.toLowe
                 v-for="letter in alphabet"
                 :key="letter"
                 type="button"
-                class="flex h-10 w-10 items-center justify-center rounded-lg text-lg font-bold transition-all sm:h-12 sm:w-12"
+                class="flex h-10 w-10 items-center justify-center rounded-xl text-lg font-bold shadow-sm transition-all duration-200 hover:scale-110 sm:h-12 sm:w-12"
                 :class="
                     isSelected(letter)
-                        ? 'bg-sky-500 text-white shadow-md'
-                        : 'bg-white text-sky-800 hover:bg-sky-100 dark:bg-sky-900 dark:text-sky-200'
+                        ? 'bg-gradient-to-br from-green-400 to-emerald-500 text-white shadow-md'
+                        : 'bg-white/80 text-sky-700 hover:bg-sky-100 dark:bg-sky-900/50 dark:text-sky-200'
                 "
                 @click="emit('toggle', letter)"
             >
