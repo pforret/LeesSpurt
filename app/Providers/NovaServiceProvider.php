@@ -17,7 +17,14 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        //
+        Nova::footer(fn () => sprintf(
+            '%s v%s | Nova %s | Laravel %s | PHP %s',
+            config('app.name'),
+            config('app.version'),
+            Nova::version(),
+            app()->version(),
+            PHP_VERSION
+        ));
     }
 
     /**
@@ -55,7 +62,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         Gate::define('viewNova', function (User $user) {
             return in_array($user->email, [
-                "peter@forret.com"
+                'peter@forret.com',
             ]);
         });
     }

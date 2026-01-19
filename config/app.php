@@ -15,6 +15,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'version' => trim(file_get_contents(base_path('VERSION.md'))),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
