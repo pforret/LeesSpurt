@@ -63,27 +63,27 @@
         {{-- Structured Data for LLMs and Search --}}
         <script type="application/ld+json">
         {
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
+            "@@context": "https://schema.org",
+            "@@type": "WebApplication",
             "name": "Letterly",
             "description": "A reading skills trainer for children aged 5-7, supporting English, Dutch, and French languages.",
             "url": "{{ config('app.url') }}",
             "applicationCategory": "EducationalApplication",
             "operatingSystem": "Web",
             "offers": {
-                "@type": "Offer",
+                "@@type": "Offer",
                 "price": "0",
                 "priceCurrency": "EUR"
             },
             "audience": {
-                "@type": "EducationalAudience",
+                "@@type": "EducationalAudience",
                 "educationalRole": "student",
                 "suggestedMinAge": 5,
                 "suggestedMaxAge": 7
             },
             "inLanguage": ["en", "nl", "fr"],
             "author": {
-                "@type": "Person",
+                "@@type": "Person",
                 "name": "Peter Forret",
                 "url": "https://github.com/pforret"
             }

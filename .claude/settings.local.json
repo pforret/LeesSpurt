@@ -32,7 +32,14 @@
       "Bash(find:*)",
       "Bash(ls:*)",
       "Bash(convert:*)",
-      "Bash(magick:*)"
+      "Bash(magick:*)",
+      "Skill(dev-browser:dev-browser)",
+      "Bash(bun x tsx:*)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)",
+      "Bash(xargs cat:*)",
+      "Bash(valet restart:*)",
+      "Bash(brew services restart:*)"
     ]
   }
 }
