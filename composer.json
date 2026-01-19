@@ -104,7 +104,7 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "version": "0.1.11",
+    "version": "0.1.12",
     "repositories": {
         "nova": {
             "type": "composer",
