@@ -11,7 +11,24 @@
       "Bash(curl:*)",
       "Bash(composer test:*)",
       "Bash(npm install)",
-      "Bash(./vendor/bin/pint:*)"
+      "Bash(./vendor/bin/pint:*)",
+      "Bash(chmod:*)",
+      "WebSearch",
+      "WebFetch(domain:sightwords.com)",
+      "WebFetch(domain:www.klascement.net)",
+      "WebFetch(domain:pedagogie62maitrisedelalangue.site.ac-lille.fr)",
+      "WebFetch(domain:onzetaal.nl)",
+      "WebFetch(domain:o.bacquet.free.fr)",
+      "WebFetch(domain:wikikids.nl)",
+      "WebFetch(domain:www.logicieleducatif.fr)",
+      "WebFetch(domain:www.charivarialecole.fr)",
+      "WebFetch(domain:woorden.wiki.kennisnet.nl)",
+      "WebFetch(domain:www.trousse-et-frimousse.net)",
+      "WebFetch(domain:www.mysticlolly.fr)",
+      "WebFetch(domain:slideplayer.fr)",
+      "WebFetch(domain:1000mostcommonwords.com)",
+      "WebFetch(domain:www.clozemaster.com)",
+      "Bash(/Users/pforret/Code/Projects/Zorah/LeesTrainer/database/files/dedup-csv.sh)"
     ]
   }
 }

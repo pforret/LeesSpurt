@@ -8,15 +8,18 @@ export function useThesaurus() {
     const loading = ref(false);
     const error = ref<string | null>(null);
 
-    const loadWords = async (language: Language, length: number): Promise<string[]> => {
-        const key = `${language}-${length}`;
+    const loadWords = async (language: Language, length: number, maxAge?: number): Promise<string[]> => {
+        const key = `${language}-${length}-${maxAge ?? 'all'}`;
         if (wordsCache.value[key]) {
             return wordsCache.value[key];
         }
 
         try {
             loading.value = true;
-            const response = await fetch(`/api/words/${language}/${length}`);
+            const url = maxAge
+                ? `/api/words/${language}/${length}?max_age=${maxAge}`
+                : `/api/words/${language}/${length}`;
+            const response = await fetch(url);
             if (!response.ok) {
                 throw new Error(`Failed to load words for ${language} length ${length}`);
             }
@@ -34,11 +37,12 @@ export function useThesaurus() {
     const loadWordsInRange = async (
         language: Language,
         minLength: number,
-        maxLength: number
+        maxLength: number,
+        maxAge?: number
     ): Promise<string[]> => {
         const allWords: string[] = [];
         for (let len = minLength; len <= maxLength; len++) {
-            const words = await loadWords(language, len);
+            const words = await loadWords(language, len, maxAge);
             allWords.push(...words);
         }
         return allWords;

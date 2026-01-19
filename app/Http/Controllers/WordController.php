@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Language;
 use App\Models\Word;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class WordController extends Controller
 {
-    public function index(string $langCode, int $length): JsonResponse
+    public function index(Request $request, string $langCode, int $length): JsonResponse
     {
         $language = Language::where('code', $langCode)->first();
 
@@ -16,9 +17,14 @@ class WordController extends Controller
             return response()->json([], 404);
         }
 
-        $words = Word::where('language_id', $language->id)
-            ->where('length', $length)
-            ->pluck('word');
+        $query = Word::where('language_id', $language->id)
+            ->where('length', $length);
+
+        if ($request->has('max_age')) {
+            $query->where('minimum_age', '<=', (int) $request->get('max_age'));
+        }
+
+        $words = $query->pluck('word');
 
         return response()->json($words);
     }

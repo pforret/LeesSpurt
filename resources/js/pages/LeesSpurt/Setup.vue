@@ -40,63 +40,67 @@ const startGame = () => {
                 }}
             </h1>
 
-            <div class="space-y-4">
+            <div class="space-y-3">
                 <Label class="text-lg text-sky-800 dark:text-sky-200">
                     {{ t({ en: 'Time (seconds)', nl: 'Tijd (seconden)', fr: 'Temps (secondes)' }) }}
                 </Label>
-                <div class="flex flex-wrap justify-center gap-3">
-                    <button
-                        v-for="d in durations"
-                        :key="d"
-                        type="button"
-                        class="flex h-14 w-16 items-center justify-center rounded-xl text-xl font-bold transition-all"
-                        :class="
-                            duration === d
-                                ? 'bg-sky-500 text-white shadow-lg'
-                                : 'bg-white text-sky-800 hover:bg-sky-100 dark:bg-sky-900 dark:text-sky-200'
-                        "
-                        @click="setDuration(d)"
-                    >
-                        {{ d }}
-                    </button>
+                <div class="flex justify-center">
                     <input
                         type="number"
                         :value="duration"
                         min="10"
                         max="600"
-                        class="h-14 w-20 rounded-xl border-2 border-sky-300 bg-white text-center text-xl font-bold text-sky-800 focus:border-sky-500 focus:outline-none dark:border-sky-700 dark:bg-sky-900 dark:text-sky-200"
+                        class="h-20 w-32 rounded-2xl border-4 border-sky-400 bg-white text-center text-4xl font-bold text-sky-800 shadow-lg focus:border-sky-500 focus:outline-none dark:border-sky-600 dark:bg-sky-900 dark:text-sky-200"
                         @input="setDuration(Number(($event.target as HTMLInputElement).value))"
                     />
                 </div>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <button
+                        v-for="d in durations"
+                        :key="d"
+                        type="button"
+                        class="flex h-10 w-12 items-center justify-center rounded-lg text-sm font-semibold transition-all"
+                        :class="
+                            duration === d
+                                ? 'bg-sky-500 text-white shadow'
+                                : 'bg-sky-100 text-sky-700 hover:bg-sky-200 dark:bg-sky-800 dark:text-sky-300'
+                        "
+                        @click="setDuration(d)"
+                    >
+                        {{ d }}
+                    </button>
+                </div>
             </div>
 
-            <div class="space-y-4">
+            <div class="space-y-3">
                 <Label class="text-lg text-sky-800 dark:text-sky-200">
                     {{ t({ en: 'Goal (words)', nl: 'Doel (woorden)', fr: 'Objectif (mots)' }) }}
                 </Label>
-                <div class="flex flex-wrap justify-center gap-3">
-                    <button
-                        v-for="th in thresholds"
-                        :key="th"
-                        type="button"
-                        class="flex h-14 w-16 items-center justify-center rounded-xl text-xl font-bold transition-all"
-                        :class="
-                            threshold === th
-                                ? 'bg-green-500 text-white shadow-lg'
-                                : 'bg-white text-sky-800 hover:bg-sky-100 dark:bg-sky-900 dark:text-sky-200'
-                        "
-                        @click="setThreshold(th)"
-                    >
-                        {{ th }}
-                    </button>
+                <div class="flex justify-center">
                     <input
                         type="number"
                         :value="threshold"
                         min="1"
                         max="500"
-                        class="h-14 w-20 rounded-xl border-2 border-green-300 bg-white text-center text-xl font-bold text-sky-800 focus:border-green-500 focus:outline-none dark:border-green-700 dark:bg-sky-900 dark:text-sky-200"
+                        class="h-20 w-32 rounded-2xl border-4 border-green-400 bg-white text-center text-4xl font-bold text-sky-800 shadow-lg focus:border-green-500 focus:outline-none dark:border-green-600 dark:bg-sky-900 dark:text-sky-200"
                         @input="setThreshold(Number(($event.target as HTMLInputElement).value))"
                     />
+                </div>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <button
+                        v-for="th in thresholds"
+                        :key="th"
+                        type="button"
+                        class="flex h-10 w-12 items-center justify-center rounded-lg text-sm font-semibold transition-all"
+                        :class="
+                            threshold === th
+                                ? 'bg-green-500 text-white shadow'
+                                : 'bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-800 dark:text-green-300'
+                        "
+                        @click="setThreshold(th)"
+                    >
+                        {{ th }}
+                    </button>
                 </div>
             </div>
 

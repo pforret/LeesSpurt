@@ -49,7 +49,7 @@ class WordSeeder extends Seeder
         fgetcsv($handle); // Skip header row
 
         $batch = [];
-        $batchSize = 500;
+        $batchSize = 100;
         $now = now();
 
         while (($row = fgetcsv($handle)) !== false) {
@@ -67,13 +67,13 @@ class WordSeeder extends Seeder
             ];
 
             if (count($batch) >= $batchSize) {
-                DB::table('words')->insert($batch);
+                DB::table('words')->upsert($batch, ['language_id', 'word'], ['length', 'minimum_age', 'updated_at']);
                 $batch = [];
             }
         }
 
         if (! empty($batch)) {
-            DB::table('words')->insert($batch);
+            DB::table('words')->upsert($batch, ['language_id', 'word'], ['length', 'minimum_age', 'updated_at']);
         }
 
         fclose($handle);

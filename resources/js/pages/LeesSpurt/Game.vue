@@ -14,7 +14,7 @@ import KidLayout from '@/layouts/KidLayout.vue';
 const props = defineProps<{ lang?: string }>();
 
 const { language, t, route, initFromProp } = useLanguage();
-const { minWordLength, maxWordLength, knownLetters } = useKidSettings();
+const { minWordLength, maxWordLength, knownLetters, kidAge } = useKidSettings();
 const { loadWordsInRange, filterByLetters, selectRandomWord } = useThesaurus();
 const {
     phase,
@@ -53,6 +53,15 @@ const handleKeydown = (e: KeyboardEvent) => {
         e.preventDefault();
         handleAdvance();
     }
+    if (e.code === 'Escape') {
+        e.preventDefault();
+        escapeGame();
+    }
+};
+
+const escapeGame = () => {
+    cleanup();
+    router.visit(route('/play/setup'));
 };
 
 const finishGame = () => {
@@ -65,7 +74,7 @@ onMounted(async () => {
     reset();
     loading.value = true;
 
-    const words = await loadWordsInRange(language.value, minWordLength.value, maxWordLength.value);
+    const words = await loadWordsInRange(language.value, minWordLength.value, maxWordLength.value, kidAge.value);
     availableWords.value = filterByLetters(words, knownLetters.value);
 
     if (availableWords.value.length === 0) {
@@ -97,6 +106,13 @@ onUnmounted(() => {
     <CountdownOverlay v-if="phase === 'countdown'" :value="countdownValue" />
 
     <KidLayout>
+        <button
+            class="absolute right-4 top-4 rounded-full bg-red-500 px-4 py-2 text-lg font-bold text-white shadow-lg transition hover:bg-red-600"
+            @click.stop="escapeGame"
+        >
+            ✕ {{ t({ en: 'Exit', nl: 'Stop', fr: 'Quitter' }) }}
+        </button>
+
         <div
             v-if="phase === 'playing'"
             class="flex w-full max-w-2xl flex-col items-center gap-8"

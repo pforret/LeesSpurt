@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\SeedWords;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
@@ -96,6 +97,8 @@ class Language extends Resource
      */
     public function actions(NovaRequest $request): array
     {
-        return [];
+        return [
+            new SeedWords,
+        ];
     }
 }
