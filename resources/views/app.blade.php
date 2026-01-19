@@ -48,6 +48,7 @@
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
         <meta property="og:site_name" content="Letterly">
+        <meta property="og:logo" content="{{ config('app.url') }}/apple-touch-icon.png">
         <meta property="og:locale" content="en_US">
         <meta property="og:locale:alternate" content="nl_NL">
         <meta property="og:locale:alternate" content="fr_FR">
