@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
+
+const page = usePage();
+const version = page.props.version as string;
 </script>
 
 <template>
@@ -16,6 +19,7 @@ import { Link } from '@inertiajs/vue3';
         </main>
         <footer class="flex items-center justify-center gap-4 p-4 text-sm text-sky-600 dark:text-sky-400">
             <span>© 2026 Peter Forret</span>
+            <span>v{{ version }}</span>
             <a
                 href="https://github.com/pforret"
                 target="_blank"

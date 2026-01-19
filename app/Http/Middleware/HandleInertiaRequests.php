@@ -35,9 +35,12 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $version = trim(file_get_contents(base_path('VERSION.md')));
+
         return [
             ...parent::share($request),
             'name' => config('app.name'),
+            'version' => $version,
             'auth' => [
                 'user' => $request->user(),
             ],
