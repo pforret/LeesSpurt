@@ -29,7 +29,10 @@
       "WebFetch(domain:1000mostcommonwords.com)",
       "WebFetch(domain:www.clozemaster.com)",
       "Bash(/Users/pforret/Code/Projects/Zorah/LeesTrainer/database/files/dedup-csv.sh)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(convert:*)",
+      "Bash(magick:*)"
     ]
   }
 }

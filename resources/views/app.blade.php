@@ -30,7 +30,65 @@
             }
         </style>
 
-        <title inertia>{{ config('app.name', 'Laravel') }}</title>
+        <title inertia>{{ config('app.name', 'Letterly') }}</title>
+
+        {{-- SEO Meta Tags --}}
+        <meta name="description" content="Letterly - A fun reading trainer for kids aged 5-7. Learn to read words in English, Dutch, and French through interactive games.">
+        <meta name="keywords" content="reading trainer, learn to read, kids education, phonics, literacy, English, Dutch, French, spelling">
+        <meta name="author" content="Peter Forret">
+        <meta name="robots" content="index, follow">
+        <meta name="theme-color" content="#0ea5e9">
+
+        {{-- Open Graph / Facebook --}}
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ config('app.url') }}">
+        <meta property="og:title" content="{{ config('app.name', 'Letterly') }} - Reading Trainer for Kids">
+        <meta property="og:description" content="A fun reading trainer for kids aged 5-7. Learn to read words in English, Dutch, and French through interactive games.">
+        <meta property="og:image" content="{{ config('app.url') }}/og-image.png">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:site_name" content="Letterly">
+        <meta property="og:locale" content="en_US">
+        <meta property="og:locale:alternate" content="nl_NL">
+        <meta property="og:locale:alternate" content="fr_FR">
+
+        {{-- Twitter Card --}}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:url" content="{{ config('app.url') }}">
+        <meta name="twitter:title" content="{{ config('app.name', 'Letterly') }} - Reading Trainer for Kids">
+        <meta name="twitter:description" content="A fun reading trainer for kids aged 5-7. Learn to read words in English, Dutch, and French.">
+        <meta name="twitter:image" content="{{ config('app.url') }}/og-image.png">
+        <meta name="twitter:creator" content="@pforret">
+
+        {{-- Structured Data for LLMs and Search --}}
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Letterly",
+            "description": "A reading skills trainer for children aged 5-7, supporting English, Dutch, and French languages.",
+            "url": "{{ config('app.url') }}",
+            "applicationCategory": "EducationalApplication",
+            "operatingSystem": "Web",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "EUR"
+            },
+            "audience": {
+                "@type": "EducationalAudience",
+                "educationalRole": "student",
+                "suggestedMinAge": 5,
+                "suggestedMaxAge": 7
+            },
+            "inLanguage": ["en", "nl", "fr"],
+            "author": {
+                "@type": "Person",
+                "name": "Peter Forret",
+                "url": "https://github.com/pforret"
+            }
+        }
+        </script>
 
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
