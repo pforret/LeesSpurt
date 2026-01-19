@@ -20,7 +20,7 @@ class WordSeeder extends Seeder
 
     public function run(): void
     {
-        DB::table('words')->truncate();
+        DB::table('words')->delete();
 
         $files = glob(database_path('files/words.*.csv'));
 
